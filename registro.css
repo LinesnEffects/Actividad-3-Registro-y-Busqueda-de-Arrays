@@ -1,0 +1,9 @@
+div#myDataCapture {
+    border: solid 5px;
+    border-color: hsl(240, 100%, 80%);
+    padding: 40px;
+    background: lightsteelblue;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    border-radius: 15px;
+  }
