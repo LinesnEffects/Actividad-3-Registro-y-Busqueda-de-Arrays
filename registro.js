@@ -4,8 +4,8 @@ var idSelected = ""
 // Create
 var add = function(){
     var name = document.getElementById("name").value
-    var age = document.getElementById("age").value
-    data.push({name: name, age: age})
+    var idNumber = document.getElementById("idNumber").value
+    data.push({name: name, idNumber: idNumber})
     console.log(data)
     localStorage.setItem("myData", JSON.stringify(data))
     toListInfo()
@@ -15,9 +15,9 @@ var add = function(){
 // Update
 var modify = function(){
     var name = document.getElementById("name").value
-    var age = document.getElementById("age").value
+    var idNumber = document.getElementById("idNumber").value
     data[idSelected].name = name
-    data[idSelected].age = age
+    data[idSelected].idNumber = idNumber
     localStorage.setItem("myData", JSON.stringify(data))
     console.log(data)
     toListInfo()
@@ -40,7 +40,7 @@ var toListInfo = function(){
         console.log(data)
         for (let a = 0; a < data.length; a++) {
             myData.innerHTML += `<tr>
-                                    <td onclick = "selectedData(${a})">${data[a].age}</td>
+                                    <td onclick = "selectedData(${a})">${data[a].idNumber}</td>
                                     <td onclick = "selectedData(${a})">${data[a].name}</td>                                    
                                     <td><div class = "btn btn-danger" onclick="deleteField(${a})">Eliminar</div></td>
                                 </tr>`        
@@ -57,13 +57,13 @@ var deleteField = function(position){
 var selectedData = function(position){
     idSelected = position
     document.getElementById("name").value = data[idSelected].name
-    document.getElementById("age").value = data[idSelected].age 
+    document.getElementById("idNumber").value = data[idSelected].idNumber 
     document.getElementById("btnAdd").style.display = "none" 
     document.getElementById("btnModify").style.display = "initial" 
 }
 var newf = function(){
     document.getElementById("name").value = ""
-    document.getElementById("age").value = ""
+    document.getElementById("idNumber").value = ""
     idSelected = ""
     document.getElementById("btnAdd").style.display = "initial" 
     document.getElementById("btnModify").style.display = "none" 
