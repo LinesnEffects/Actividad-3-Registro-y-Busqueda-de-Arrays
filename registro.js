@@ -3,9 +3,11 @@ var idSelected = ""
 
 // Create
 var add = function(){
-    var name = document.getElementById("name").value
     var idNumber = document.getElementById("idNumber").value
-    data.push({name: name, idNumber: idNumber})
+    var name = document.getElementById("name").value    
+    var lastName = document.getElementById("lastName").value
+    var address = document.getElementById("address").value
+    data.push({idNumber: idNumber, name: name, lastName: lastName, address: address,})
     console.log(data)
     localStorage.setItem("myData", JSON.stringify(data))
     toListInfo()
@@ -14,10 +16,14 @@ var add = function(){
 
 // Update
 var modify = function(){
-    var name = document.getElementById("name").value
     var idNumber = document.getElementById("idNumber").value
-    data[idSelected].name = name
+    var name = document.getElementById("name").value
+    var lastName = document.getElementById("lastName").value
+    var address = document.getElementById("address").value
     data[idSelected].idNumber = idNumber
+    data[idSelected].name = name
+    data[idSelected].lastName = lastName
+    data[idSelected].address = address
     localStorage.setItem("myData", JSON.stringify(data))
     console.log(data)
     toListInfo()
@@ -41,7 +47,9 @@ var toListInfo = function(){
         for (let a = 0; a < data.length; a++) {
             myData.innerHTML += `<tr>
                                     <td onclick = "selectedData(${a})">${data[a].idNumber}</td>
-                                    <td onclick = "selectedData(${a})">${data[a].name}</td>                                    
+                                    <td onclick = "selectedData(${a})">${data[a].name}</td>
+                                    <td onclick = "selectedData(${a})">${data[a].lastName}</td>
+                                    <td onclick = "selectedData(${a})">${data[a].address}</td>                                    
                                     <td><div class = "btn btn-danger" onclick="deleteField(${a})">Eliminar</div></td>
                                 </tr>`        
         }
@@ -54,16 +62,22 @@ var deleteField = function(position){
     localStorage.setItem("myData", JSON.stringify(data))
     toListInfo()
 }
+
+
 var selectedData = function(position){
     idSelected = position
-    document.getElementById("name").value = data[idSelected].name
     document.getElementById("idNumber").value = data[idSelected].idNumber 
+    document.getElementById("name").value = data[idSelected].name
+    document.getElementById("lastName").value = data[idSelected].lastName 
+    document.getElementById("address").value = data[idSelected].address 
     document.getElementById("btnAdd").style.display = "none" 
     document.getElementById("btnModify").style.display = "initial" 
 }
 var newf = function(){
-    document.getElementById("name").value = ""
     document.getElementById("idNumber").value = ""
+    document.getElementById("name").value = ""
+    document.getElementById("lastName").value = ""
+    document.getElementById("address").value = ""
     idSelected = ""
     document.getElementById("btnAdd").style.display = "initial" 
     document.getElementById("btnModify").style.display = "none" 
