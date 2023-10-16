@@ -39,8 +39,7 @@ var toListInfo = function(){
         data = []
     } else{
         data = JSON.parse(x)
-    }
-        
+    }        
         var myData = document.getElementById("myData")
         myData.innerHTML = ""
         console.log(data)
@@ -63,6 +62,27 @@ var deleteField = function(position){
     toListInfo()
 }
 
+// Search
+function search() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("idNumber");
+    filter = input.value;
+    table = document.getElementById("myData");
+    tr = table.getElementsByTagName("tr");
+  
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+
 
 var selectedData = function(position){
     idSelected = position
@@ -73,6 +93,7 @@ var selectedData = function(position){
     document.getElementById("btnAdd").style.display = "none" 
     document.getElementById("btnModify").style.display = "initial" 
 }
+
 var newf = function(){
     document.getElementById("idNumber").value = ""
     document.getElementById("name").value = ""
